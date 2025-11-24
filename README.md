@@ -3,6 +3,7 @@ Notes and drafts for custom RSS that pulls from substack and other places
 
 
 News:
+
 Dropsite - https://www.dropsitenews.com/feed
 
 Nita Farahany - https://nitafarahany.substack.com/feed
@@ -16,7 +17,9 @@ Counterpunch - https://www.counterpunch.org/feed/
 Truthout - https://truthout.org/feed/
 
 MKC - https://rss.libsyn.com/shows/107595/destinations/583371.xml
+
 RLR - https://rss.libsyn.com/shows/95194/destinations/485908.xml
+
 RedMenace - https://rss.libsyn.com/shows/162635/destinations/1073807.xml
 
 Jacobin (LATAM) - https://jacobinlat.com/feed/
@@ -29,11 +32,16 @@ Lee Fang - https://www.leefang.com/feed
 
 ProPublica - https://www.propublica.org/feed
 
+Mexico-Solidarity - https://mexicosolidarity.com/feed/
+
 Local News:
+
 https://georgiarecorder.com/feed/
+
 https://theatlantavoice.com/feed/
 
 Maybe:
+
 rob henderson - https://www.robkhenderson.com/feed
 
 
@@ -63,7 +71,9 @@ Free but adds delay
 https://github.com/jdepoix/youtube-transcript-api
 
 Youtube:
+
 https://www.youtube.com/@PiscosHour
+
 https://www.youtube.com/@AcidHorizon
 
 https://github.com/devhims/youtube-caption-extractor
