@@ -6,8 +6,6 @@ News:
 
 Dropsite - https://www.dropsitenews.com/feed
 
-Nita Farahany - https://nitafarahany.substack.com/feed
-
 Bolts Mag - https://boltsmag.org/feed/
 
 Big (jeff stoller) - https://www.thebignewsletter.com/feed
@@ -15,12 +13,6 @@ Big (jeff stoller) - https://www.thebignewsletter.com/feed
 Counterpunch - https://www.counterpunch.org/feed/
 
 Truthout - https://truthout.org/feed/
-
-MKC - https://rss.libsyn.com/shows/107595/destinations/583371.xml
-
-RLR - https://rss.libsyn.com/shows/95194/destinations/485908.xml
-
-RedMenace - https://rss.libsyn.com/shows/162635/destinations/1073807.xml
 
 Jacobin (LATAM) - https://jacobinlat.com/feed/
 
@@ -34,16 +26,32 @@ ProPublica - https://www.propublica.org/feed
 
 Mexico-Solidarity - https://mexicosolidarity.com/feed/
 
+Compact - https://www.compactmag.com/feed/
+
 Local News:
 
 https://georgiarecorder.com/feed/
 
 https://theatlantavoice.com/feed/
 
+Podcast:
+
+
+MKC - https://rss.libsyn.com/shows/107595/destinations/583371.xml
+
+RLR - https://rss.libsyn.com/shows/95194/destinations/485908.xml
+
+RedMenace - https://rss.libsyn.com/shows/162635/destinations/1073807.xml
+
+
+Patreon or youtube:
+https://www.patreon.com/cw/TheDeprogram
+https://www.youtube.com/@thedeprogram9999
+
 Maybe:
 
 rob henderson - https://www.robkhenderson.com/feed
-
+Nita Farahany - https://nitafarahany.substack.com/feed
 
 Patreons ( How to handle?)
 https://www.patreon.com/c/leftofphilosophy/posts
