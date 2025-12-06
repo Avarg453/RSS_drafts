@@ -28,6 +28,11 @@ Mexico-Solidarity - https://mexicosolidarity.com/feed/
 
 Compact - https://www.compactmag.com/feed/
 
+
+AI & Tech:
+AI realist - https://msukhareva.substack.com/feed
+
+
 Local News:
 
 https://georgiarecorder.com/feed/
