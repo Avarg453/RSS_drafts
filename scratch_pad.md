@@ -1,82 +1,29 @@
-## scratchpad:
+## scratchpad
 
 # First from each source get an average of how many new articles per day
 
 Maybe at first just do all new articles past three days
 
-
 # Estimate token cost and how I'd be able to send entire article context (probably some filtering needed to go from html down to just the article body
 
 Some suggest Gemma 2 or Granite3.2 for the text summarization
 
-
 # Ollama for running granite model
 
-https://huggingface.co/ibm-granite/granite-3.2-2b-instruct
+<https://huggingface.co/ibm-granite/granite-3.2-2b-instruct>
 
-https://www.youtube.com/watch?v=0NJEoIqQILE
+<https://www.youtube.com/watch?v=0NJEoIqQILE>
 
-https://www.ralgar.one/ollama-on-windows-a-beginners-guide/
-
-
-
-
-
-
+<https://www.ralgar.one/ollama-on-windows-a-beginners-guide/>
 
 DN test notes
 contents:
     '''
-    dn_feed=feedparser.parse("https://www.dropsitenews.com/feed")
+    dn_feed=feedparser.parse("<https://www.dropsitenews.com/feed>")
 
     for elem in dn_feed.entries:
         print(elem.title)
     '''
-
-# PS C:\Users\avarg\Documents\ProgPlayground\RSS_drafts> py .\feedparser_script.py
-# Child Amputees in Gaza Use Makeshift Prosthetics as Israel Restricts Medical Supplies
-# Jeffrey Epstein Aided Alan Dershowitz’s Attack on Mearsheimer and Walt’s “Israel Lobby”
-# Gaza faces more winter storms; RSF declares “truce” in Sudan after genocidal killing spree; Trump to reassess all Biden refugees
-# A Single Warehouse in Jersey City Moved Over A Thousand Tons of Military Cargo to Israel Every Week
-# Hezbollah commander killed in Israeli airstrike; U.S. reportedly readies for covert action in Venezuela; Musk's DOGE quietly dissolves
-# Weapons of Willpower: Hamas and Islamic Jihad on Trump's Gaza Plan
-# Darfur's governor said 27,000 killed over three days last month; U.S. pushes Ukraine to give up Donbas region to end the war with Russia
-# “Modi on board”: Jeffrey Epstein Pressed Steve Bannon to Meet With Indian PM Shortly Before His Death
-# Israel Kills Over 30 Palestinians in Gaza in One of Bloodiest Assaults of "Ceasefire"
-# Israeli forces extend "red zone" further into Gaza City; Mamdani retains controversial NYPD commissioner Jessica Tisch
-# Andrew Garroni Arrested for Alleged “Massive Fraud Scheme” After Drop Site Investigation
-# U.S. Mercenary Firm Tied to Notorious Aid Scheme Is Recruiting for New Gaza Deployment
-# Israeli airstrike on Palestinian refugee camp in Lebanon kills 13; Congress approves release of Epstein files
-# Trump, the “Peace President,” Continues Endless American Wars
-# Jeffrey Epstein Pursued Swiss Rothschild Bank to Finance Israeli Cyberweapons Empire
-# Poland Repurposed a Nazi Factory Site to Make TNT to Drop on Gaza
-# UN Security Council approves Trump's Gaza plan; Israel vows to block any path to a Palestinian state
-# UN Security Council faces major vote on Gaza; Trump caves on Epstein vote; Israeli attacks on Lebanon and Gaza
-# Euphrates River Becomes the Last Battle Line in Syria’s Civil War
-# Tents in Gaza Collapse From Rain as Palestinians Struggle With Massive Flooding
-# PS C:\Users\avarg\Documents\ProgPlayground\RSS_drafts> py .\feedparser_script.py
-# Child Amputees in Gaza Use Makeshift Prosthetics as Israel Restricts Medical Supplies
-# Jeffrey Epstein Aided Alan Dershowitz’s Attack on Mearsheimer and Walt’s “Israel Lobby”
-# Gaza faces more winter storms; RSF declares “truce” in Sudan after genocidal killing spree; Trump to reassess all Biden refugees
-# A Single Warehouse in Jersey City Moved Over A Thousand Tons of Military Cargo to Israel Every Week
-# Hezbollah commander killed in Israeli airstrike; U.S. reportedly readies for covert action in Venezuela; Musk's DOGE quietly dissolves
-# Weapons of Willpower: Hamas and Islamic Jihad on Trump's Gaza Plan
-# Darfur's governor said 27,000 killed over three days last month; U.S. pushes Ukraine to give up Donbas region to end the war with Russia
-# “Modi on board”: Jeffrey Epstein Pressed Steve Bannon to Meet With Indian PM Shortly Before His Death
-# Israel Kills Over 30 Palestinians in Gaza in One of Bloodiest Assaults of "Ceasefire"
-# Israeli forces extend "red zone" further into Gaza City; Mamdani retains controversial NYPD commissioner Jessica Tisch
-# Andrew Garroni Arrested for Alleged “Massive Fraud Scheme” After Drop Site Investigation
-# U.S. Mercenary Firm Tied to Notorious Aid Scheme Is Recruiting for New Gaza Deployment
-# Israeli airstrike on Palestinian refugee camp in Lebanon kills 13; Congress approves release of Epstein files
-# Trump, the “Peace President,” Continues Endless American Wars
-# Jeffrey Epstein Pursued Swiss Rothschild Bank to Finance Israeli Cyberweapons Empire
-# Poland Repurposed a Nazi Factory Site to Make TNT to Drop on Gaza
-# UN Security Council approves Trump's Gaza plan; Israel vows to block any path to a Palestinian state
-# UN Security Council faces major vote on Gaza; Trump caves on Epstein vote; Israeli attacks on Lebanon and Gaza
-# Euphrates River Becomes the Last Battle Line in Syria’s Civil War
-# Tents in Gaza Collapse From Rain as Palestinians Struggle With Massive Flooding
-
-
 
 We have the entry contents being spit out but the text is all split up:
 
@@ -91,8 +38,7 @@ We have the entry contents being spit out but the text is all split up:
            'against NASCAR</a></em></p><p>On Monday in a Charlotte, North '
            'Carolina courthouse, the weirdest and most interesting '
            'monopolization trial of the year started. A driving team, 23XI '
-           'Racing, is suing NASCAR over its control of the sport, alleging 
-
+           'Racing, is suing NASCAR over its control of the sport, alleging
 
 html2text seems to work fine:
 
@@ -103,8 +49,6 @@ import html2text
 h = html2text.HTML2Text()
 
 print(h.handle(test_article))
-
-
 
 Need to handle things like images embedded:
 [![](https://substackcdn.com/image/fetch/$s_!tGz_!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-
@@ -119,26 +63,63 @@ continue to impose their will to hurt others until their targets stand up and
 refuse to be victims. That moment has now arrived." \- [complaint against
 NASCAR](https://storage.courtlistener.com/recap/gov.uscourts.ncwd.117501/gov.uscourts.ncwd.117501.107.0.pdf)_
 
+# Next steps
 
-# Next steps:
-# # Figure out nosql or some other kind of straight forward enough db to store all of the entries for 
+# # Figure out nosql or some other kind of straight forward enough db to store all of the entries for
 
-Dropsite - https://www.dropsitenews.com/feed
+Dropsite - <https://www.dropsitenews.com/feed>
 
-Bolts Mag - https://boltsmag.org/feed/
+Bolts Mag - <https://boltsmag.org/feed/>
 
-Big (jeff stoller) - https://www.thebignewsletter.com/feed
+Big (jeff stoller) - <https://www.thebignewsletter.com/feed>
 
-Counterpunch - https://www.counterpunch.org/feed/
+Counterpunch - <https://www.counterpunch.org/feed/>
 
-Truthout - https://truthout.org/feed/
+Truthout - <https://truthout.org/feed/>
 
-Jacobin (LATAM) - https://jacobinlat.com/feed/
+Jacobin (LATAM) - <https://jacobinlat.com/feed/>
 
-Ken Klippenstein - https://www.kenklippenstein.com/feed
+Ken Klippenstein - <https://www.kenklippenstein.com/feed>
 
 # # Is there a quick programattic way to ensure that entry value contains majority of the articl econtents?
 
 # # Neeed to derive some kind of ID for each of these articles
+
 - source website-date (YYYYMMDD)?-AbbrevTitle
 - ID NUM for website - YYYYMMDD - ID for entry that day??
+
+# # we have a corpus of ~250 articles, ignoring the ones in spanish for now (can potentially use langdetect to add an element for language in the json)
+
+# extractive summarization
+
+spaCy: A Python library for NLP tasks.
+PyTextRank: A spaCy extension that implements the TextRank algorithm.
+
+# abstractive summarization
+
+PEGASUS: A Transformer Model for Text Summarization
+PEGASUS is a Transformer-based model designed specifically for text summarization. Unlike other models, PEGASUS uses a unique pre-training strategy where critical sentences are masked during training. The model is then tasked with generating these hidden sentences, which enables it to create more accurate and coherent summaries.
+
+To use the PEGASUS model for text summarization, you need to install the following libraries and frameworks:
+
+'''
+!pip install git+<https://github.com/Lightning-AI/pytorch-lightning>
+!pip install git+<https://github.com/huggingface/transformers>
+!pip install sentencepiece
+!pip install git+<https://github.com/stas00/transformers>
+!pip install pegasus
+'''
+
+alternatives can be found under x-sum section in <https://nlpprogress.com/english/summarization.html>
+
+there's also doc2vec for potentially highlighting overlap between articles outside of extracted meaningful words or summaries.
+<https://medium.com/wisio/a-gentle-introduction-to-doc2vec-db3e8c0cce5e>
+
+For semantic similarity between words there is also WordNet
+Python
+Natural Language Toolkit has taken over the development of pywordnet. There is now a Python package, nltk_lite.wordnet, which incorporates pywordnet and which supports WordNet 2.1. It is included in NLTK Lite.
+
+BabelNet is a very large multilingual lexical database, developed by Roberto Navigli  [email] , Simone Paolo Ponzetto and others at the University of Rome "La Sapienza" in the context of the ERC Starting Grant MultiJEDI. BabelNet provides a wide-coverage knowledge repository in which WordNet is automatically aligned to the English Wikipedia, and lexicalizations for its concepts (i.e. English Wikipedia pages and WordNet synsets) are provided on the basis of Wikipedia cross-language links and the output of a machine translations system. The current version, which is freely available under a Creative Commons license, comprises a network of more than 3 million synsets and 70 millions semantic relations, and it can also be browsed through an on-line interface.
+The Global WordNet Association is a free, public and non-commercial organization that provides a platform for discussing, sharing and connecting wordnets for all languages in the world.
+MultiWordNet, developed by Luisa Bentivogli [email] and others is a multilingual lexical database, developed at ITC-irst, in which the Italian WordNet is strictly aligned with Princeton WordNet 1.6. The current version includes around 44,400 Italian lemmas organized into 35,400 synsets which are aligned, whenever possible, with their corresponding English Princeton synsets. The MultiWordNet database can be freely browsed through its on-line interface, and is distributed both for research and commercial use. Information on the distribution licence is available at the web site.
+The Open Multilingual WordNet is a massively multilingual database that links many different WordNet projects, developed by Francis Bond [email] at Nanyang Technological University.  It currently links open-source wordnets in over 20 languages, and allows you to both look words up online or download the data.
