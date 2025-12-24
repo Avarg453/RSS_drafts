@@ -5,6 +5,8 @@ import re
 from urllib.parse import urlparse
 from pathlib import Path
 import os
+import html
+
 
 h = html2text.HTML2Text()
 
@@ -64,7 +66,7 @@ def fetch_and_save_feeds():
                 'Source': source,
                 'link': entry['link'],
                 'title': entry['title'],
-                'author': entry.get('author', ''),
+                'author': html.unescape(entry.get('author', '')),
                 'content': h.handle(entry['content'][0]['value'])
             }
 
