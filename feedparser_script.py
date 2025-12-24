@@ -4,6 +4,8 @@ import json
 from urllib.parse import urlparse
 import os
 
+from pathlib import Path
+
 h = html2text.HTML2Text()
 
 # list of rss feeds to parse
@@ -42,6 +44,8 @@ for feed in rss_feed_list:
 
         entry_data['uID']=uniq_ID
 
+        entry_data['Source']=entrylinkcomp
+
         entry_data['link']=entry['link']
 
         entry_data['title']=entry['title']
@@ -55,11 +59,18 @@ for feed in rss_feed_list:
         with open(f"./json_dump/{uniq_ID}.json", "w") as f:
             f.write(json_data)
 
-# for key in rss_feed:
-#     if type(rss_feed[key]) is dict:
-#         for subkey in rss_feed[key]:
-#             print(f"for {key}:{subkey}:{len(rss_feed[key][subkey])}")
-#     elif type(rss_feed[key]) is list:
-#         print(f"for {key}:{len(rss_feed[key])}")
-#     else:
-#         print(f"{key} is type: {type(rss_feed[key])}")
+
+# function to update existing json files with new property keys that have been added since they were pulled, if information is available inside the json
+for json_file in os.listdir('json_dump'):
+    # add "Source" key if missing using the substring in UID before first hyphen
+    with open(Path('json_dump') / json_file, 'r', encoding='utf-8') as f:
+        data = json.load(f) 
+        # check if data contains Source key
+        if 'Source' not in data:
+            source_value = data['uID'].split('-')[0]
+            data['Source'] = source_value
+        # save the udpated json back to file
+    with open(Path('json_dump') / json_file, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=4)
+        # if amount of updated files greater than 10, print total count of files that were updated
+        # otherwise just print each file that was updated
