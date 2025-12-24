@@ -17,6 +17,12 @@ test_jsons=["jacobinlat-2025-12-9-14-59-31.json",
 "counterpunch-2025-12-12-6-56-10.json",
 "boltsmag-2025-11-10-19-9-31.json"]
 
+# need to think of things as types of nodes.
+#  I'll have one node type that is for the article itself
+#  which will have an associated UID
+
+
+
 with GraphDatabase.driver(URI, auth=AUTH) as driver:
     driver.verify_connectivity()
     print("Connection established.")
