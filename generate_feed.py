@@ -25,9 +25,9 @@ THEME = "parchment"
 THEMES = {
     # Warm cream, old newspaper feel
     "parchment": {
-        "font_url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&family=IBM+Plex+Mono:wght@400&display=swap",
+        "font_url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&family=IBM+Plex+Mono:wght@400&family=Cal+Sans&display=swap",
         "header_bg": "rgba(245,240,232,0.97)",
-        "heading_font": "'Playfair Display', Georgia, serif",
+        "heading_font": "'Cal Sans', Georgia, serif",
         "body_font": "'Source Serif 4', Georgia, serif",
         "vars": """
             --bg: #f5f0e8;
