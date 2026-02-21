@@ -1,0 +1,45 @@
+name: Update Feed Digest
+
+on:
+  schedule:
+    - cron: '0 13 * * *'  # 8AM EST  (UTC-5)
+    - cron: '0 17 * * *'  # 12PM EST (UTC-5)
+    - cron: '0 23 * * *'  # 6PM EST  (UTC-5)
+  workflow_dispatch:       # allows manual trigger from GitHub Actions tab
+
+jobs:
+  update-feed:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write      # required to commit and push back to the repo
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install feedparser html2text
+
+      - name: Fetch RSS feeds
+        run: python feedparser_script.py
+
+      - name: Rebuild digest
+        run: python generate_feed.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes — skipping commit"
+          else
+            git commit -m "feed: auto-update $(date '+%Y-%m-%d %H:%M UTC')"
+            git push
+          fi

@@ -17,6 +17,146 @@ from pathlib import Path
 JSON_DIR = Path("json_dump")
 OUTPUT_FILE = Path("index.html")
 
+# ── Theme selector ─────────────────────────────────────────────────────────
+# Change this one value to switch the entire page theme.
+# Options: "parchment" | "ink" | "slate" | "forest" | "ivory" | "dusk"
+THEME = "parchment"
+
+THEMES = {
+    # Warm cream, old newspaper feel
+    "parchment": {
+        "font_url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&family=IBM+Plex+Mono:wght@400&display=swap",
+        "header_bg": "rgba(245,240,232,0.97)",
+        "heading_font": "'Playfair Display', Georgia, serif",
+        "body_font": "'Source Serif 4', Georgia, serif",
+        "vars": """
+            --bg: #f5f0e8;
+            --surface: #ede8dc;
+            --border: #d4c9b0;
+            --accent: #8b6e3a;
+            --accent-dim: #6a5028;
+            --text: #2c2416;
+            --text-muted: #7a6040;
+            --text-faint: #b0a080;
+            --card-bg: #f9f5ee;
+            --radius: 4px;
+        """,
+        "mark_bg": "rgba(139,110,58,0.18)",
+        "mark_color": "#5a3e1b",
+        "pill_hover_bg": "rgba(139,110,58,0.08)",
+    },
+    # Dark gold editorial (original)
+    "ink": {
+        "font_url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap",
+        "header_bg": "rgba(15,14,12,0.97)",
+        "heading_font": "'Playfair Display', Georgia, serif",
+        "body_font": "'Source Serif 4', Georgia, serif",
+        "vars": """
+            --bg: #0f0e0c;
+            --surface: #1a1915;
+            --border: #2e2c27;
+            --accent: #c8a96e;
+            --accent-dim: #8a7045;
+            --text: #e8e4db;
+            --text-muted: #8a8578;
+            --text-faint: #4a4840;
+            --card-bg: #161512;
+            --radius: 4px;
+        """,
+        "mark_bg": "rgba(200,169,110,0.25)",
+        "mark_color": "#c8a96e",
+        "pill_hover_bg": "rgba(200,169,110,0.06)",
+    },
+    # Cool blue-grey modern magazine
+    "slate": {
+        "font_url": "https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Literata:ital,wght@0,300;0,400;1,300&family=Syne:wght@700;800&display=swap",
+        "header_bg": "rgba(240,242,245,0.97)",
+        "heading_font": "'DM Serif Display', Georgia, serif",
+        "body_font": "'Literata', Georgia, serif",
+        "vars": """
+            --bg: #f0f2f5;
+            --surface: #e4e8f0;
+            --border: #d0d8e8;
+            --accent: #2a4a80;
+            --accent-dim: #4a6fa5;
+            --text: #1a2030;
+            --text-muted: #6878a0;
+            --text-faint: #a0aac0;
+            --card-bg: #f7f9fc;
+            --radius: 4px;
+        """,
+        "mark_bg": "rgba(42,74,128,0.15)",
+        "mark_color": "#2a4a80",
+        "pill_hover_bg": "rgba(42,74,128,0.06)",
+    },
+    # Deep green, calm long-read
+    "forest": {
+        "font_url": "https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Literata:ital,wght@0,300;0,400;1,300&family=IBM+Plex+Mono:wght@400&display=swap",
+        "header_bg": "rgba(14,26,20,0.97)",
+        "heading_font": "'DM Serif Display', Georgia, serif",
+        "body_font": "'Literata', Georgia, serif",
+        "vars": """
+            --bg: #0e1a14;
+            --surface: #162210;
+            --border: #1e3428;
+            --accent: #6abf7e;
+            --accent-dim: #3a8a58;
+            --text: #d4e8d8;
+            --text-muted: #4a7a58;
+            --text-faint: #2a4a38;
+            --card-bg: #111e18;
+            --radius: 4px;
+        """,
+        "mark_bg": "rgba(106,191,126,0.2)",
+        "mark_color": "#6abf7e",
+        "pill_hover_bg": "rgba(106,191,126,0.06)",
+    },
+    # Clean white, minimal luxury with red accent
+    "ivory": {
+        "font_url": "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&family=Syne:wght@700;800&display=swap",
+        "header_bg": "rgba(254,252,248,0.97)",
+        "heading_font": "'Playfair Display', Georgia, serif",
+        "body_font": "'Source Serif 4', Georgia, serif",
+        "vars": """
+            --bg: #fefcf8;
+            --surface: #f5f2ec;
+            --border: #ece8e0;
+            --accent: #c0392b;
+            --accent-dim: #962d22;
+            --text: #1a1814;
+            --text-muted: #9a9088;
+            --text-faint: #c8c0b8;
+            --card-bg: #fefcf8;
+            --radius: 4px;
+        """,
+        "mark_bg": "rgba(192,57,43,0.12)",
+        "mark_color": "#c0392b",
+        "pill_hover_bg": "rgba(192,57,43,0.06)",
+    },
+    # Purple-grey twilight
+    "dusk": {
+        "font_url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Literata:ital,wght@0,300;0,400;1,300&family=Syne:wght@700;800&display=swap",
+        "header_bg": "rgba(22,18,30,0.97)",
+        "heading_font": "'Playfair Display', Georgia, serif",
+        "body_font": "'Literata', Georgia, serif",
+        "vars": """
+            --bg: #16121e;
+            --surface: #1e1828;
+            --border: #2a2040;
+            --accent: #a07fd0;
+            --accent-dim: #5a3a9a;
+            --text: #d8d0e8;
+            --text-muted: #6858a0;
+            --text-faint: #3a3060;
+            --card-bg: #130f1a;
+            --radius: 4px;
+        """,
+        "mark_bg": "rgba(160,127,208,0.2)",
+        "mark_color": "#a07fd0",
+        "pill_hover_bg": "rgba(160,127,208,0.06)",
+    },
+}
+
 
 def parse_date_from_uid(uid: str) -> datetime:
     """
@@ -82,9 +222,10 @@ def escape_attr(s: str) -> str:
     return s.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def build_html(by_source: dict) -> str:
+def build_html(by_source: dict, theme_name: str = "parchment") -> str:
     total = sum(len(v) for v in by_source.values())
     generated = datetime.now().strftime("%B %d, %Y at %I:%M %p")
+    t = THEMES.get(theme_name, THEMES["parchment"])
 
     # Build flat search index — embedded as JSON in the page
     search_index = []
@@ -153,27 +294,16 @@ def build_html(by_source: dict) -> str:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feed Digest</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <link href="{t['font_url']}" rel="stylesheet">
     <style>
-        :root {{
-            --bg: #0f0e0c;
-            --surface: #1a1915;
-            --border: #2e2c27;
-            --accent: #c8a96e;
-            --accent-dim: #8a7045;
-            --text: #e8e4db;
-            --text-muted: #8a8578;
-            --text-faint: #4a4840;
-            --card-bg: #161512;
-            --radius: 4px;
-        }}
+        :root {{{t['vars']}        }}
 
         * {{ box-sizing: border-box; margin: 0; padding: 0; }}
 
         body {{
             background: var(--bg);
             color: var(--text);
-            font-family: 'Source Serif 4', Georgia, serif;
+            font-family: {t['body_font']};
             font-weight: 300;
             line-height: 1.7;
             min-height: 100vh;
@@ -185,7 +315,7 @@ def build_html(by_source: dict) -> str:
             padding: 2.5rem 0 1.25rem;
             position: sticky;
             top: 0;
-            background: rgba(15,14,12,0.97);
+            background: {t['header_bg']};
             backdrop-filter: blur(8px);
             z-index: 100;
         }}
@@ -201,7 +331,7 @@ def build_html(by_source: dict) -> str:
         }}
 
         h1 {{
-            font-family: 'Playfair Display', Georgia, serif;
+            font-family: {t['heading_font']};
             font-size: clamp(1.8rem, 4vw, 2.8rem);
             font-weight: 900;
             letter-spacing: -0.02em;
@@ -244,7 +374,7 @@ def build_html(by_source: dict) -> str:
             border: 1px solid var(--border);
             border-radius: var(--radius);
             color: var(--text);
-            font-family: 'Source Serif 4', serif;
+            font-family: {t['body_font']};
             font-size: 0.9rem;
             font-weight: 300;
             padding: 0.55rem 2.8rem 0.55rem 2.4rem;
@@ -307,7 +437,7 @@ def build_html(by_source: dict) -> str:
             color: var(--text-muted);
             text-decoration: none;
             font-size: 0.78rem;
-            font-family: 'Source Serif 4', serif;
+            font-family: {t['body_font']};
             letter-spacing: 0.03em;
             transition: all 0.15s ease;
         }}
@@ -315,7 +445,7 @@ def build_html(by_source: dict) -> str:
         .pill:hover {{
             border-color: var(--accent);
             color: var(--accent);
-            background: rgba(200, 169, 110, 0.06);
+            background: {t['pill_hover_bg']};
         }}
 
         .pill-count {{
@@ -341,7 +471,7 @@ def build_html(by_source: dict) -> str:
         .source-section.search-hidden {{ display: none; }}
 
         .source-heading {{
-            font-family: 'Playfair Display', Georgia, serif;
+            font-family: {t['heading_font']};
             font-size: 1.4rem;
             font-weight: 700;
             color: var(--text);
@@ -362,7 +492,7 @@ def build_html(by_source: dict) -> str:
         }}
 
         .source-count {{
-            font-family: 'Source Serif 4', serif;
+            font-family: {t['body_font']};
             font-size: 0.8rem;
             font-weight: 300;
             color: var(--text-muted);
@@ -404,7 +534,7 @@ def build_html(by_source: dict) -> str:
         .card:hover {{ background: var(--surface); }}
 
         .card-title {{
-            font-family: 'Playfair Display', Georgia, serif;
+            font-family: {t['heading_font']};
             font-size: 1.05rem;
             font-weight: 700;
             line-height: 1.35;
@@ -442,8 +572,8 @@ def build_html(by_source: dict) -> str:
 
         /* Highlight matched text */
         mark {{
-            background: rgba(200, 169, 110, 0.25);
-            color: var(--accent);
+            background: {t['mark_bg']};
+            color: {t['mark_color']};
             border-radius: 2px;
             padding: 0 1px;
         }}
@@ -716,7 +846,7 @@ def main():
     total = sum(len(v) for v in by_source.values())
     print(f"Found {total} articles across {len(by_source)} sources: {', '.join(by_source.keys())}")
 
-    html = build_html(by_source)
+    html = build_html(by_source, theme_name=THEME)
     OUTPUT_FILE.write_text(html, encoding="utf-8")
     print(f"Written to {OUTPUT_FILE} ({OUTPUT_FILE.stat().st_size // 1024}KB)")
     print("\nNext steps:")
