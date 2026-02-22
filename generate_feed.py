@@ -25,9 +25,9 @@ THEME = "parchment"
 THEMES = {
     # Warm cream, old newspaper feel
     "parchment": {
-        "font_url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&family=IBM+Plex+Mono:wght@400&family=Cal+Sans&display=swap",
+        "font_url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&family=IBM+Plex+Mono:wght@400&display=swap",
         "header_bg": "rgba(245,240,232,0.97)",
-        "heading_font": "'Cal Sans', Georgia, serif",
+        "heading_font": "'Playfair Display', Georgia, serif",
         "body_font": "'Source Serif 4', Georgia, serif",
         "vars": """
             --bg: #f5f0e8;
@@ -202,9 +202,20 @@ def truncate(text: str, max_chars: int = 300) -> str:
     """Return a plain-text excerpt."""
     if not text:
         return ""
-    # Strip markdown-ish image lines and extra whitespace
+    # Strip markdown images: ![alt](url)
     text = re.sub(r"!\[.*?\]\(.*?\)", "", text)
+    # Strip Substack CDN image URLs (bare URLs on their own or inside brackets)
+    text = re.sub(r"https?://substackcdn\.com\S+", "", text)
+    text = re.sub(r"https?://substack-post-media\S+", "", text)
+    # Strip any remaining bare URLs (http/https)
+    text = re.sub(r"https?://\S+", "", text)
+    # Strip markdown links but keep the label: [label](url) → label
     text = re.sub(r"\[([^\]]+)\]\([^\)]+\)", r"\1", text)
+    # Strip leftover brackets and Substack image captions
+    text = re.sub(r"\[!\[.*?\]\]", "", text)
+    # Strip any leftover empty link remnants like []( or [](
+    text = re.sub(r"\[?\]\s*\(?\s*\)?", "", text)
+    # Collapse whitespace
     text = " ".join(text.split())
     if len(text) <= max_chars:
         return text
@@ -280,6 +291,7 @@ def build_html(by_source: dict, theme_name: str = "parchment") -> str:
                 <span class="source-dot"></span>
                 <span class="source-label">{source}</span>
                 <span class="source-count">{len(articles)} article{"s" if len(articles) != 1 else ""}</span>
+                <button class="source-toggle" aria-label="Toggle {source}">▾</button>
             </h2>
             <div class="cards-grid">
                 {cards}
@@ -599,7 +611,7 @@ def build_html(by_source: dict, theme_name: str = "parchment") -> str:
 
         #global-empty strong {{
             display: block;
-            font-family: 'Playfair Display', serif;
+            font-family: {t['heading_font']};
             font-size: 1.3rem;
             color: var(--text-muted);
             margin-bottom: 0.5rem;
@@ -615,11 +627,93 @@ def build_html(by_source: dict, theme_name: str = "parchment") -> str:
             font-style: italic;
         }}
 
-        @media (max-width: 600px) {{
+        /* Collapsible source sections on mobile */
+        .source-toggle {{
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            padding: 0.1rem 0.3rem;
+            margin-left: 0.25rem;
+            transition: transform 0.2s ease, color 0.15s;
+            line-height: 1;
+            flex-shrink: 0;
+        }}
+
+        .source-toggle:hover {{ color: var(--accent); }}
+
+        .source-section.collapsed .cards-grid,
+        .source-section.collapsed .no-results-msg {{
+            display: none;
+        }}
+
+        .source-section.collapsed .source-toggle {{
+            transform: rotate(-90deg);
+        }}
+
+        @media (max-width: 700px) {{
+            /* Compact header */
+            header {{
+                padding: 0.75rem 0 0.6rem;
+            }}
+
+            .header-inner {{
+                padding: 0 1rem;
+                gap: 0.4rem;
+            }}
+
+            h1 {{
+                font-size: 1.3rem;
+                letter-spacing: -0.01em;
+            }}
+
+            /* Hide article count on mobile to save space */
+            .header-meta {{ display: none; }}
+
+            /* Search: full width, flush with header */
+            .search-row {{
+                margin: 0.5rem auto 0;
+                padding: 0 1rem;
+            }}
+
+            .search-wrap {{
+                max-width: 100%;
+            }}
+
+            #search {{
+                font-size: 1rem;         /* prevents iOS auto-zoom on focus */
+                padding: 0.65rem 2.8rem 0.65rem 2.4rem;
+            }}
+
+            /* Hide desktop nav pills on mobile — sources are collapsible instead */
+            nav {{ display: none; }}
+
+            /* Main padding */
+            main {{
+                padding: 1.5rem 1rem 4rem;
+            }}
+
+            /* Collapsible source headings on mobile */
+            .source-toggle {{ display: block; }}
+
+            .source-heading {{
+                cursor: pointer;
+                user-select: none;
+                font-size: 1.15rem;
+                margin-bottom: 0;
+                padding-bottom: 0.65rem;
+            }}
+
+            /* When expanded, restore bottom margin on grid */
+            .source-section:not(.collapsed) .cards-grid {{
+                margin-top: 1rem;
+            }}
+
             .cards-grid {{ grid-template-columns: 1fr; }}
-            .header-inner {{ flex-direction: column; gap: 0.25rem; }}
-            .header-meta {{ margin-left: 0; }}
-            .search-wrap {{ max-width: 100%; }}
+
+            .card {{ padding: 1.1rem; }}
         }}
     </style>
 </head>
@@ -827,6 +921,40 @@ document.addEventListener('keydown', (e) => {{
     if (e.key === '/' && document.activeElement !== searchInput) {{
         e.preventDefault();
         searchInput.focus();
+    }}
+}});
+
+// Collapsible source sections (mobile)
+function isMobile() {{ return window.innerWidth <= 700; }}
+
+document.querySelectorAll('.source-heading').forEach(heading => {{
+    heading.addEventListener('click', (e) => {{
+        if (!isMobile()) return;
+        // Don't collapse if user clicked a link inside heading
+        if (e.target.tagName === 'A') return;
+        const section = heading.closest('.source-section');
+        section.classList.toggle('collapsed');
+    }});
+}});
+
+// On mobile, collapse all sources by default except the first
+function initCollapse() {{
+    if (!isMobile()) return;
+    document.querySelectorAll('.source-section').forEach((s, i) => {{
+        if (i > 0) s.classList.add('collapsed');
+    }});
+}}
+
+initCollapse();
+// Re-run if screen is resized from desktop to mobile
+window.addEventListener('resize', () => {{
+    if (isMobile()) {{
+        // Ensure toggle buttons are visible but don't re-collapse already-open sections
+    }} else {{
+        // Remove all collapsed states when returning to desktop
+        document.querySelectorAll('.source-section').forEach(s => {{
+            s.classList.remove('collapsed');
+        }});
     }}
 }});
 </script>
