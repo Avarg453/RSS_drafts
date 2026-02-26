@@ -35,9 +35,9 @@ THEMES = {
             --border: #d4c9b0;
             --accent: #8b6e3a;
             --accent-dim: #6a5028;
-            --text: #2c2416;
-            --text-muted: #7a6040;
-            --text-faint: #b0a080;
+            --text: #081849;
+            --text-muted: #120602;
+            --text-faint: #213885;
             --card-bg: #f9f5ee;
             --radius: 4px;
         """,
