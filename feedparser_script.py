@@ -11,6 +11,7 @@ import html
 h = html2text.HTML2Text()
 
 RSS_FEEDS = [
+    "https://www.dropsitenews.com/feed",
     "https://boltsmag.org/feed/",
     "https://www.thebignewsletter.com/feed",
     "https://www.counterpunch.org/feed/",
