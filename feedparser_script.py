@@ -62,13 +62,20 @@ def fetch_and_save_feeds():
             date_str = format_date(entry['published_parsed'])
             uniq_id = f"{source}-{date_str}"
 
+            # Safely extract content with fallback to summary
+            content = ''
+            if 'content' in entry and entry['content']:
+                content = h.handle(entry['content'][0]['value'])
+            elif 'summary' in entry:
+                content = h.handle(entry['summary'])
+
             entry_data = {
                 'uID': uniq_id,
                 'Source': source,
                 'link': entry['link'],
                 'title': entry['title'],
                 'author': html.unescape(entry.get('author', '')),
-                'content': h.handle(entry['content'][0]['value'])
+                'content': content
             }
 
             json_file = JSON_DUMP_DIR / f"{uniq_id}.json"
