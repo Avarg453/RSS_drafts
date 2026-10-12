@@ -1,0 +1,8 @@
+{
+    "uID": "kenklippenstein-2026-10-12-1-32-16",
+    "Source": "kenklippenstein",
+    "link": "https://www.kenklippenstein.com/p/klippenstein-crosspost-privacy-policy",
+    "title": "Klippenstein Crosspost: Privacy Policy",
+    "author": "Ken Klippenstein",
+    "content": "Klippenstein Crosspost is a personal publishing tool operated by Ken\nKlippenstein. It runs only on his own computer and has no other users.\n\n**What it handles.** The tool uploads videos, titles and captions that Ken\ncreates to accounts he owns on TikTok, YouTube, Instagram, Facebook, Threads,\nX, Bluesky, LinkedIn and Substack. To do this it stores the access tokens\nthose platforms issue, in a file on his computer.\n\n**What it does not do.** It does not collect personal information about anyone\nelse. It does not use analytics or advertising. It does not sell, share or\ntransfer data to anyone except the platform a video is being posted to.\n\n**YouTube.** The tool uses YouTube API Services. By using it you agree to the\n[YouTube Terms of Service](https://www.youtube.com/t/terms). See also the\n[Google Privacy Policy](https://policies.google.com/privacy). You can revoke\nthe tool's access at any time from your Google Account's [security\nsettings](https://myaccount.google.com/permissions).\n\n**TikTok.** You can revoke the tool's access to a TikTok account in the TikTok\napp under Settings and privacy -> Security -> Apps and services permissions.\n\n**Deletion.** Revoking access, or deleting the token file on the computer,\nremoves all stored data. Videos already posted stay on each platform under\nthat platform's own policies.\n\n**Contact:**[kenneth.klippenstein@gmail.com](mailto:kenneth.klippenstein@gmail.com)\n\nLast updated: October 2026\n\n"
+}
